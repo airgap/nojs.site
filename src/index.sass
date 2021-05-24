@@ -1,0 +1,179 @@
+
+/* latin */
+@font-face
+  font-family: 'Raleway'
+  font-style: normal
+  font-display: swap
+  src: url(https://fonts.gstatic.com/s/raleway/v19/1Ptug8zYS_SKggPNyC0ITw.woff2) format('woff2')
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+
+$pc: #ffffff
+$sc: #272f2f
+$tt: .2s
+html
+  font-family: 'Raleway', sans-serif
+  font-weight: 900 !important
+  background-color: $sc
+  a
+    text-decoration: none
+    color: inherit
+nav
+  input[type=checkbox]
+    display: none
+  label
+    display: block
+    position: fixed
+    width: 40px
+    height: 40px
+    //background-color: red
+    right: - 100px
+    top: 10px
+    cursor: pointer
+    z-index: 1
+    span
+      width: 30px
+      height: 3px
+      background-color: white
+      margin-bottom: 7px
+      display: block
+      margin-left: 5px
+      transition: .2s all 0s
+      position: absolute
+      &:first-child
+        //margin-top: 8px
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px
+        top: 8px
+      &:nth-child(2)
+        top: 18px
+        right: 5px
+      &:last-child
+        top: 28px
+        border-bottom-left-radius: 10px
+        border-bottom-right-radius: 10px
+    &:hover
+      span
+        &:not(:last-child)
+          border-radius: 10px
+          width: 10px
+          height: 10px
+          top: 6px
+        &:nth-child(2)
+          right: 5px
+        &:last-child
+          top: 24px
+          height: 12px
+          //transform: rotate(90deg)
+
+
+  > div
+    position: relative
+    //background-color: red
+    //overflow: hidden
+    transition: transform $tt * 2
+    br
+      display: none
+    #nav-hoverer
+      width: 75px
+      background: $pc
+      height: 25px
+      position: absolute
+      border-radius: 100px
+      transition: $tt all, $tt left $tt
+      top: -50px
+      pointer-events: none
+      left: -100px
+      z-index: -1
+    a
+      display: inline-block
+      padding: 5px
+      color: $pc
+      position: relative
+      margin-right: -4px
+      transition: $tt all
+      &::after
+        content: '-'
+        font-size: 0
+        width: 100%
+        height: 2px
+        background-color: $pc
+        display: block
+        transition: $tt all
+      &:hover
+        color: $sc
+        transition: $tt color $tt
+        &::after
+          //width: 0
+          top: 10px
+        ~ #nav-hoverer
+          top: 2px
+          transition: $tt all, $tt top $tt
+    a:nth-of-type(1):hover ~ #nav-hoverer
+      width: 63px
+      left: -4px
+    a:nth-of-type(2):hover ~ #nav-hoverer
+      width: 77px
+      left: 52px
+    a:nth-of-type(3):hover ~ #nav-hoverer
+      width: 65px
+      left: 123px
+    a:nth-of-type(4):hover ~ #nav-hoverer
+      width: 110px
+      left: 182px
+  input:checked
+    ~ label
+      &:not(:hover)
+        span
+          &:first-child
+            top: -50px
+            transform: rotate(45deg)
+          &:nth-child(2)
+            transform: rotate(45deg)
+          &:last-child
+            transform: rotate(-45deg)
+            top: 17px
+      &:hover
+        span
+          &:first-child
+            border-top-left-radius: 10px
+            border-top-right-radius: 10px
+            transform: rotate(45deg)
+          &:nth-child(2)
+            top: 15px
+            right: 5px
+          &:last-child
+            top: 28px
+            border-radius: 10px 10px 0 0
+
+    ~ div
+      height: 130px
+@media screen and (max-width: 500px)
+  nav
+    #navdrop + label
+      right: 10px
+    > div
+      height: 0
+      transform: translate(-100%)
+      br
+        display: block
+      #nav-hoverer
+        left: -130px !important
+        transition: $tt all, $tt top $tt
+        top: 2px
+      a:hover ~ #nav-hoverer
+        left: -3px !important
+        transition: $tt all, $tt left $tt
+      a:nth-of-type(1):hover ~ #nav-hoverer
+        width: 63px
+        top: 1px
+      a:nth-of-type(2):hover ~ #nav-hoverer
+        width: 77px
+        top: 33px
+      a:nth-of-type(3):hover ~ #nav-hoverer
+        width: 65px
+        top: 64px
+      a:nth-of-type(4):hover ~ #nav-hoverer
+        width: 110px
+        top: 95px
+    #navdrop:checked ~ div
+      transform: translate(0)
